@@ -8,6 +8,7 @@ class RecipesController < ApplicationController
   end
 
   def create
+    raise params.inspect
     @recipe_form = RecipeBuildForm.new(params[:recipe_form])
     if @recipe_form.save
       redirect_to recipe_path(@recipe_form.recipe.id)
