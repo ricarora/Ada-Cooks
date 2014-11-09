@@ -9,8 +9,10 @@ attr_reader :recipe
     # create
     @recipe = Recipe.create(name: @attributes[:name], directions: @attributes[:directions])
 
-    @attributes[:ingredients].each do |id|
-      Recipeingredient.create(ingredient_id: id, recipe_id: @recipe.id)
+    @attributes[:ingredients].each do |id, value|
+      if value.join != "" && value.length == 4
+        Recipeingredient.create(ingredient_id: id, recipe_id: @recipe.id, unit: value[2], measurement: value[1], preparation: value[3] )
+      end
     end
     add_ingredient
     @recipe.valid?

@@ -13,8 +13,8 @@
   <div>
     <%= check_box_tag "recipe_form[ingredients][#{ingredient.id}][]", ingredient.id %>
     <%= label_tag "recipe_form[ingredients][#{ingredient.id}][]", ingredient.name %>
-    <%= text_field_tag "recipe_form[ingredients][#{ingredient.id}][]", nil, :placeholder => "Unit" %>
     <%= text_field_tag "recipe_form[ingredients][#{ingredient.id}][]", nil, :placeholder => "Measurement" %>
+    <%= text_field_tag "recipe_form[ingredients][#{ingredient.id}][]", nil, :placeholder => "Cup/Tbsp/tsp" %>
     <%= text_field_tag "recipe_form[ingredients][#{ingredient.id}][]", nil, :placeholder => "Preparation" %>
   </div>
   <% end %>
