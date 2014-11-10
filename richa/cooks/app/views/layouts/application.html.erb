@@ -7,6 +7,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+   <% flash.each do |key, value| %>
+    <div class="alert alert-<%= key %>"><%= value %></div>
+  <% end %>
+  <header class="header">
+    <%= link_to "View all Ingredients", ingredients_path %><%= link_to "View all Recipes", recipes_path %>
+  </header>
 
 <%= yield %>
 

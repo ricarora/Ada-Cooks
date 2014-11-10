@@ -1,2 +1,6 @@
-<h1>Ingredients#edit</h1>
-<p>Find me in app/views/ingredients/edit.html.erb</p>
+<h1>Edit <%= @ingredient.name %></h1>
+<%= form_tag ingredient_path, method: :patch do %>
+<%= label_tag "ingredient[name]", "Name" %>
+<%= text_field_tag "ingredient[name]", @ingredient.name %>
+<%= submit_tag %>
+<% end %>

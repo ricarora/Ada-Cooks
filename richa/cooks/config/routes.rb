@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  root 'recipes#index'
   # Recipe Routes------------------------------------
   get 'recipes', to: 'recipes#index', as: :recipes
 
@@ -9,11 +10,11 @@ Rails.application.routes.draw do
 
   get 'recipe/:id', to: 'recipes#show', as: :recipe
 
-  get 'recipe/:id/edit', to: 'recipes#edit', as: :edit_recipe
-
   patch 'recipe/:id', to: 'recipes#update'
 
-  delete 'recipe/:id', to: 'recipe#destroy'
+  delete 'recipe/:id', to: 'recipes#destroy'
+
+  get 'recipe/:id/edit', to: 'recipes#edit', as: :edit_recipe
 
   # RecipeIngredient Routes---------------------------
   get 'recipeingredients', to: 'recipeingredients#index', as: :recipeingredients
@@ -28,7 +29,7 @@ Rails.application.routes.draw do
 
   patch 'recipeingredient/:id', to: 'recipeingredients#update'
 
-  delete 'recipeingredient/:id', to: 'recipeingredients#destroy'
+  delete 'recipeingredient/:id', to: 'recipeingredients#destroy', as: :delete_recipeingredient
 
   # Ingredient Routes------------------------------------
   get 'ingredients', to: 'ingredients#index', as: :ingredients

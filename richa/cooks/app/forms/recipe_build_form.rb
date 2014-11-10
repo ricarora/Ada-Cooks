@@ -1,4 +1,3 @@
-
 UNIT = 2
 
 class RecipeBuildForm
@@ -47,7 +46,6 @@ attr_reader :recipe
   end
 
   def update
-
     @recipe.update(name: @attributes[:name],
                   directions: @attributes[:directions],
                   cooking_time: @attributes[:cooking_time],
