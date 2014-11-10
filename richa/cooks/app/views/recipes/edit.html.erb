@@ -1,2 +1,54 @@
-<h1>Recipes#edit</h1>
-<p>Find me in app/views/recipes/edit.html.erb</p>
+<h1>Edit <%= @recipe.name %></h1>
+<%= form_tag recipe_path, method: :patch do %>
+<div>
+  <%= label_tag "recipe_form[name]", "Name" %>
+  <%= text_field_tag "recipe_form[name]", @recipe.name %>
+</div>
+<div>
+  <%= label_tag "recipe_form[servings]", "Servings" %>
+  <%= text_field_tag "recipe_form[servings]", @recipe.servings %>
+</div>
+<div>
+  <%= label_tag "recipe_form[cooking_time]", "Cooking Time" %>
+  <%= text_field_tag "recipe_form[cooking_time]", @recipe.cooking_time %>
+</div>
+<div>
+  <%= label_tag "recipe_form[directions]", "Directions" %>
+  <%= text_field_tag "recipe_form[directions]", @recipe.directions %>
+</div>
+<div>
+  <div>Select &amp; Add Ingredients</div>
+  <% Ingredient.all.each do |ingredient| %>
+  <div>
+    <% if @recipe.ingredients.include?(ingredient) %>
+    <% re_ing = @recipe.recipeingredients.where(ingredient_id: ingredient.id).first %>
+      <%= check_box_tag "recipe_form[ingredients][#{ingredient.id}][]", ingredient.id, true %>
+      <%= label_tag "recipe_form[ingredients][#{ingredient.id}][]", ingredient.name %>
+      <%= text_field_tag "recipe_form[ingredients][#{ingredient.id}][]", re_ing.measurement, :placeholder => "Measurement" %>
+      <%= text_field_tag "recipe_form[ingredients][#{ingredient.id}][]", re_ing.unit, :placeholder => "Cup/Tbsp/tsp/lb" %>
+      <%= text_field_tag "recipe_form[ingredients][#{ingredient.id}][]", re_ing.preparation, :placeholder => "Preparation" %>
+    <% else %>
+      <%= check_box_tag "recipe_form[ingredients][#{ingredient.id}][]", ingredient.id %>
+      <%= label_tag "recipe_form[ingredients][#{ingredient.id}][]", ingredient.name %>
+      <%= text_field_tag "recipe_form[ingredients][#{ingredient.id}][]", nil, :placeholder => "Measurement" %>
+      <%= text_field_tag "recipe_form[ingredients][#{ingredient.id}][]", nil, :placeholder => "Cup/Tbsp/tsp/lb" %>
+      <%= text_field_tag "recipe_form[ingredients][#{ingredient.id}][]", nil, :placeholder => "Preparation" %>
+    <% end %>
+  </div>
+  <% end %>
+</div>
+<div>
+  <% (1..5).each do |n| %>
+  <div>
+    <%= label_tag "recipe_form[ingredient][#{n}][]", "Add Ingredient" %>
+    <%= text_field_tag "recipe_form[ingredient][#{n}][]", nil, :placeholder => "Name" %>
+    <%= text_field_tag "recipe_form[ingredient][#{n}][]", nil, :placeholder => "Measurement" %>
+    <%= text_field_tag "recipe_form[ingredient][#{n}][]", nil, :placeholder => "Cup/Tbsp/tsp/lb" %>
+    <%= text_field_tag "recipe_form[ingredient][#{n}][]", nil, :placeholder => "Preparation" %>
+  </div>
+  <% end %>
+</div>
+<div>
+  <%= submit_tag "Update Recipe" %>
+</div>
+<% end %>

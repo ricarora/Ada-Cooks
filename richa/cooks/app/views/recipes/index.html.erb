@@ -1,6 +1,6 @@
 <h1>Recipes</h1>
 <% @recipes.each do |recipe| %>
-  <div><strong><%= recipe.name %></strong></div>
+  <div><strong><%= link_to "#{recipe.name}", recipe_path(recipe.id) %></strong></div>
   <div><% recipe.ingredients.each do |ingredient| %>
     <%= ingredient.name %>
   <% end %></div>
