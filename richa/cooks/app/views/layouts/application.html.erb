@@ -11,7 +11,9 @@
     <div class="alert alert-<%= key %>"><%= value %></div>
   <% end %>
   <header class="header">
-    <%= link_to "View all Ingredients", ingredients_path %><%= link_to "View all Recipes", recipes_path %>
+    <%= link_to "View all Ingredients", ingredients_path %>
+    <%= link_to "View all Recipes", recipes_path %>
+    <%= link_to "Add New Recipe", new_recipe_path %>
   </header>
 
 <%= yield %>
